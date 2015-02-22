@@ -44,9 +44,60 @@ class Model {
     }
 
     public function hashtag($tag){
-
+        $conn = new mysqli($this->db_host,  $this->username, $this->password,  $this->db_name);
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+        $result = mysql_query("SELECT id FROM tags WHERE tag = \'.$tag.\'");
+        if(mysql_num_rows($result) == 0) {
+            // row not found, do stuff...
+            $sql = "INSERT INTO tags (tag) VALUE (\".$tag.\")";
+            if (mysqli_query($conn, $sql)) {
+                mysqli_close($conn);
+                return "OK";
+            } else {
+                mysqli_close($conn);
+                return "Error: " . $sql . "<br>" . mysqli_error($conn);
+            }
+        }else{
+            return "OK";
+        }
     }
 
+    public function user2Hash($tag,$username){
+        $conn = new mysqli($this->db_host,  $this->username, $this->password,  $this->db_name);
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+        $tagQ = "SELECT id FROM tags WHERE tag = \'.$tag.\'";
+        $userQ = "SELECT id FROM users WHERE username = \'.$username.\'";
+        $tagRes = $conn->query($tagQ);
+        $userRes = $conn->query($userQ);
+
+        if ($result=mysqli_query($conn,$tagQ))
+        {
+            // Fetch one and one row
+            while ($Trow=mysqli_fetch_row($result)) {
+                if ($resultU = mysqli_query($conn, $userQ)) {
+                    // Fetch one and one row
+                    while ($Urow = mysqli_fetch_row($resultU)) {
+                        $sql = "INSERT INTO users_tags (userID,tagID) VALUE (\"$Urow\",\"$Trow\")";
+                        if (mysqli_query($conn, $sql)) {
+                            mysqli_close($conn);
+                            return "OK";
+                        } else {
+                            mysqli_close($conn);
+                            return "Error: " . $sql . "<br>" . mysqli_error($conn);
+                        }
+
+
+                    }
+                }
+
+            }
+    }}
 
 
 }
