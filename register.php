@@ -27,6 +27,7 @@
     <link href="assets/css/style.css" rel="stylesheet" />
     <!-- GOOGLE FONT -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <script src="static/js/jquery-1.11.2.min.js"></script>
 
 </head>
 <body>
@@ -75,6 +76,7 @@
                             <input id="repassword" name="repassword" type="password" class="form-control" placeholder="Retype Password" />
                         </div>
                         <input id="submit" style="background-color: forestgreen;color: #ffffff" type="submit" value="Register Me" name="submit">
+
                         <hr />
                         Already Registered ?  <a href="#" >Login here</a>
                     </form>

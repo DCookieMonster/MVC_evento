@@ -20,7 +20,7 @@ class View {
         $repassword=$_POST['repassword'];
         if ($repassword!=$password){
             echo "<script>alert(\"no match password\")</script>";
-            echo header("location:register.php");
+            header("location:register.php");
         }
         $fname=$_POST['fname'];
         $lname=$_POST['lname'];
@@ -34,9 +34,7 @@ class View {
     public function hashTag(){
         $tags=$_POST['Hash'];
         $username=$_POST['Username'];
-
-        $result=$this->controller->hashtag($tags,$username);
-
+        $this->controller->hashtag($tags,$username);
     }
 }
 

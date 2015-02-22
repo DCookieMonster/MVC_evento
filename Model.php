@@ -55,13 +55,11 @@ class Model {
             $sql = "INSERT INTO tags (tag) VALUE (\".$tag.\")";
             if (mysqli_query($conn, $sql)) {
                 mysqli_close($conn);
-                return "OK";
+                return"OK";
             } else {
                 mysqli_close($conn);
                 return "Error: " . $sql . "<br>" . mysqli_error($conn);
             }
-        }else{
-            return "OK";
         }
     }
 
@@ -78,7 +76,6 @@ class Model {
         }
         $tagQ = "SELECT id FROM tags WHERE tag = '.$tag.'";
         $userQ = "SELECT id FROM users WHERE username = '$username'";
-
         $result=mysqli_query($conn,$tagQ);
 
             // Fetch one and one row
@@ -87,10 +84,12 @@ class Model {
                 $resultU = mysqli_query($conn, $userQ) ;
                     // Fetch one and one row
                     while ($Urow = mysqli_fetch_row($resultU)) {
+
                         $sql = "INSERT INTO users_tags (userID,tagID) VALUE ($Urow[0],$Trow[0])";
+
                         if (mysqli_query($conn, $sql)) {
                             mysqli_close($conn);
-                            return "OK";
+                            return"OK";
                         } else {
                             mysqli_close($conn);
                             return "Error: " . $sql . "<br>" . mysqli_error($conn);

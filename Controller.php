@@ -15,7 +15,7 @@ class Controller {
     }
 
     public function register($username,$password,$email,$fname,$lname,$bdate){
-        $result=$this->model->register($username,$password,$email,$fname,$lname,$bdate);
+       $this->model->register($username,$password,$email,$fname,$lname,$bdate);
 
     }
 
@@ -27,10 +27,10 @@ class Controller {
     public function hashtag($tags,$username){
         $parts = explode(',', $tags);
         foreach ($parts as $tag){
-           $this->model->hashtag($tag);
+            $this->model->hashtag($tag);
             $this->model->user2Hash($tag,$username);
 
         }
-        return true;
+
     }
 }

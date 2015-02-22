@@ -50,7 +50,7 @@
                     <div class="form-group input-group">                   <input name="tags" type="text" placeholder="HashTags" data-role="tagsinput"/>
                     </div>
                     <div class="form-group input-group">
-                        <input name="username" id="username" value="dor121" type="hidden"/>
+                        <input name="username" id="username" value="<?php echo $_GET['username']?>" type="hidden"/>
                     <button class="btn btn-success" onclick="hashtag()" name="submit">Submit</button>
                         </div>
                 </div>
@@ -71,11 +71,12 @@
                     url: "index.php", //Relative or absolute path to response.php file
                     data: data,
                     success: function(data) {
-                        $(".the-return").html(
-                            "Favorite beverage: " + data["favorite_beverage"] + "<br />Favorite restaurant: " + data["favorite_restaurant"] + "<br />Gender: " + data["gender"] + "<br />JSON: " + data["json"]
-                        );
+                        window.location.href = "success.php";
 
-                        alert("Form submitted successfully.\nReturned json: " + data["json"]);
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        window.location.href = "success.php";
+                        console.log(textStatus, errorThrown);
                     }
                 });
             }
