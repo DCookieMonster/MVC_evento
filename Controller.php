@@ -25,11 +25,11 @@ class Controller {
     }
 
     public function hashtag($tags,$username){
-
         $parts = explode(',', $tags);
         foreach ($parts as $tag){
            $this->model->hashtag($tag);
             $this->model->user2Hash($tag,$username);
+
         }
         return true;
     }

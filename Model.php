@@ -65,25 +65,29 @@ class Model {
         }
     }
 
+    /**
+     * @param $tag
+     * @param $username
+     * @return string
+     */
     public function user2Hash($tag,$username){
         $conn = new mysqli($this->db_host,  $this->username, $this->password,  $this->db_name);
         // Check connection
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
-        $tagQ = "SELECT id FROM tags WHERE tag = \'.$tag.\'";
-        $userQ = "SELECT id FROM users WHERE username = \'.$username.\'";
-        $tagRes = $conn->query($tagQ);
-        $userRes = $conn->query($userQ);
+        $tagQ = "SELECT id FROM tags WHERE tag = '.$tag.'";
+        $userQ = "SELECT id FROM users WHERE username = '$username'";
 
-        if ($result=mysqli_query($conn,$tagQ))
-        {
+        $result=mysqli_query($conn,$tagQ);
+
             // Fetch one and one row
             while ($Trow=mysqli_fetch_row($result)) {
-                if ($resultU = mysqli_query($conn, $userQ)) {
+
+                $resultU = mysqli_query($conn, $userQ) ;
                     // Fetch one and one row
                     while ($Urow = mysqli_fetch_row($resultU)) {
-                        $sql = "INSERT INTO users_tags (userID,tagID) VALUE (\"$Urow\",\"$Trow\")";
+                        $sql = "INSERT INTO users_tags (userID,tagID) VALUE ($Urow[0],$Trow[0])";
                         if (mysqli_query($conn, $sql)) {
                             mysqli_close($conn);
                             return "OK";
@@ -96,8 +100,8 @@ class Model {
                     }
                 }
 
-            }
-    }}
+
+    }
 
 
 }

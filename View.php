@@ -33,7 +33,8 @@ class View {
 
     public function hashTag(){
         $tags=$_POST['Hash'];
-        $username=$_POST['username'];
+        $username=$_POST['Username'];
+
         $result=$this->controller->hashtag($tags,$username);
 
     }

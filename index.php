@@ -26,7 +26,7 @@ if(isset($_POST['submit']))
 if (is_ajax()) {
     if (isset($_POST["Hash"]) && !empty($_POST["Hash"])) { //Checks if action value exists
         $view->hashTag();
-        echo header("location:success.php");
+                echo header("location:success.php");
     }
 }
 

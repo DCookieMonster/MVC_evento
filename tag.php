@@ -50,7 +50,7 @@
                     <div class="form-group input-group">                   <input name="tags" type="text" placeholder="HashTags" data-role="tagsinput"/>
                     </div>
                     <div class="form-group input-group">
-                        <input name="username" id="username" value="<?php echo $_GET['username']?>" type="hidden"/>
+                        <input name="username" id="username" value="dor121" type="hidden"/>
                     <button class="btn btn-success" onclick="hashtag()" name="submit">Submit</button>
                         </div>
                 </div>
